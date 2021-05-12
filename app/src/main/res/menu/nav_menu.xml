@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+<group android:checkableBehavior="single">
+    <item
+        android:id="@+id/home"
+        android:checkable="true"
+        android:icon="@drawable/ic_home"
+        android:title="Αρχική Σελίδα" />
+    <item
+        android:id="@+id/info"
+        android:checkable="true"
+        android:icon="@drawable/ic_info"
+        android:title="Στοιχεία Οπλίτη" />
+    <item
+        android:id="@+id/dictionary"
+        android:checkable="true"
+        android:icon="@drawable/ic_dictionary"
+        android:title="Λεξικό" />
+    <item
+        android:id="@+id/corps"
+        android:checkable="true"
+        android:icon="@drawable/ic_emblem"
+        android:title="Σώματα Στρατού Ξηράς" />
+    <item
+        android:id="@+id/ranks"
+        android:checkable="true"
+        android:icon="@drawable/ic_ranks"
+        android:title="Βαθμοί Αξιωματικών" />
+    <item
+        android:id="@+id/notebook"
+        android:checkable="true"
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="Σημειωματάριο" />
+    <item
+        android:id="@+id/services"
+        android:checkable="true"
+        android:icon="@drawable/ic_services"
+        android:title="Υπηρεσίες και Άδειες" />
+    <item
+        android:id="@+id/about"
+        android:checkable="true"
+        android:icon="@drawable/ic_about"
+        android:title="Πληροφορίες Εφαρμογής" />
+</group>
+</menu>
