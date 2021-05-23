@@ -13,5 +13,7 @@
 <!-- menu items colors-->
     <color name="selecteditem">#204b53</color>
     <color name="textSelected">#357d8a</color>
-<!--    -->
+    <color name="button_mail">#49b1b6</color>
+    <color name="fb_blue">#4267B2</color>
+    <!--    -->
 </resources>

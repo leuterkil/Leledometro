@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">Λελεδόμετρο Στρατού</string>
+    <string name="app_name">Απολελέμετρο Οπλίτη</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
+    <string name="programmer_name">by left4dev</string>
+    <string name="content_desc_logo">Logo</string>
+    <string name="email_about_page">E-mail Επικοινωνίας</string>
+    <string name="facebook_word">Facebook</string>
+    <string name="instagram_word">Instagram</string>
+    <string name="donate_word">Donate</string>
+    <string name="feedback_word">Feedback</string>
+    <string name="send_message">Send Message</string>
 </resources>
