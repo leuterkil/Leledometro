@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Απολελέμετρο Οπλίτη</string>
+    <string name="app_email">echarissopoulos@gmail.com</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
     <string name="programmer_name">by left4dev</string>
@@ -10,4 +11,8 @@
     <string name="donate_word">Donate</string>
     <string name="feedback_word">Feedback</string>
     <string name="send_message">Send Message</string>
+    <string name="donate_1">Donate 1€</string>
+    <string name="donate_2">Donate 2€</string>
+    <string name="donate_5">Donate 5€</string>
+    <string name="donate_10">Donate 10€</string>
 </resources>

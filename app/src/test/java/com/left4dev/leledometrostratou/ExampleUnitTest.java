@@ -1,6 +1,14 @@
 package com.left4dev.leledometrostratou;
 
+import android.content.Intent;
+import android.net.Uri;
+
+import com.left4dev.leledometrostratou.about.About;
+import com.left4dev.leledometrostratou.about.AboutViewModel;
+
 import org.junit.Test;
+
+import androidx.lifecycle.ViewModelProvider;
 
 import static org.junit.Assert.*;
 
@@ -14,4 +22,5 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
 }
