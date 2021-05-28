@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.left4dev.leledometrostratou.R;
+import com.left4dev.leledometrostratou.functions.Datas;
 import com.left4dev.leledometrostratou.home.Home;
 import com.left4dev.leledometrostratou.ranks.Ranks;
 import com.left4dev.leledometrostratou.spinners.army.TypeOfArmy;
@@ -39,9 +40,8 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
     private EditText dateOfDismissal,dateOfEnlistment,Name,Esso,Series;
     private DatePickerDialog.OnDateSetListener dateOfDismissalCale,dateOfEnlistmentCale;
     private CorpsAdapter corpsAdapter;
+    private Datas datas = new Datas();
     private final Corps corps = new Corps();
-    private TypeOfArmyAdapter typeOfArmyAdapter;
-    private TypeOfArmy typeOfArmy;
     private Spinner corpsSpinner;
     private Button saveButton;
 
@@ -56,17 +56,17 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View frangmentView = inflater.inflate(R.layout.info_fragment, container, false);
+        View fragmentView = inflater.inflate(R.layout.info_fragment, container, false);
 
 //        initialize Components
-        dateOfDismissal = frangmentView.findViewById(R.id.editTextDateOfDismissal);
-        dateOfEnlistment = frangmentView.findViewById(R.id.editTextDateOfEnlistment);
-        Name = frangmentView.findViewById(R.id.editTextName);
-        Esso = frangmentView.findViewById(R.id.editTextESSO);
-        Series = frangmentView.findViewById(R.id.editTextSeira);
-        saveButton = frangmentView.findViewById(R.id.buttonSave);
+        dateOfDismissal = fragmentView.findViewById(R.id.editTextDateOfDismissal);
+        dateOfEnlistment = fragmentView.findViewById(R.id.editTextDateOfEnlistment);
+        Name = fragmentView.findViewById(R.id.editTextName);
+        Esso = fragmentView.findViewById(R.id.editTextESSO);
+        Series = fragmentView.findViewById(R.id.editTextSeira);
+        saveButton = fragmentView.findViewById(R.id.buttonSave);
         corpsAdapter = new CorpsAdapter(getActivity(),corps.getTitles(),corps.getImages());
-        corpsSpinner = frangmentView.findViewById(R.id.Corps);
+        corpsSpinner = fragmentView.findViewById(R.id.Corps);
         corpsSpinner.setAdapter(corpsAdapter);
 
 
@@ -97,7 +97,7 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
         corpsSpinner.setOnItemSelectedListener(this);
         dateOfEnlistment.setOnClickListener(this);
         dateOfDismissal.setOnClickListener(this);
-        return frangmentView;
+        return fragmentView;
     }
 
     @Override
@@ -105,16 +105,16 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(InfoViewModel.class);
         File f = new File("/data/user/0/com.left4dev.leledometrostratou/files/personalData.xml");
-        ArrayList<String> datas;
+        ArrayList<String> userDatas;
         if (f.exists())
         {
-            datas = mViewModel.loadXML(getActivity());
-            Name.setText(datas.get(0));
-            dateOfEnlistment.setText(datas.get(1));
-            dateOfDismissal.setText(datas.get(2));
-            Esso.setText(datas.get(3));
-            Series.setText(datas.get(4));
-            corpsSpinner.setSelection(Integer.parseInt(datas.get(5)));
+            userDatas = datas.loadXML(getActivity());
+            Name.setText(userDatas.get(0));
+            dateOfEnlistment.setText(userDatas.get(1));
+            dateOfDismissal.setText(userDatas.get(2));
+            Esso.setText(userDatas.get(3));
+            Series.setText(userDatas.get(4));
+            corpsSpinner.setSelection(Integer.parseInt(userDatas.get(5)));
         }
 
     }
@@ -140,7 +140,7 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
                 String series = Series.getText().toString();
                 String doe = dateOfEnlistment.getText().toString();
                 String dod = dateOfDismissal.getText().toString();
-                mViewModel.SaveChanges(getActivity(),name,doe,dod,esso,series,ImageID,CorpTitle);
+                datas.SaveChanges(getActivity(),name,doe,dod,esso,series,ImageID,CorpTitle);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Home()).commit();
                 break;
