@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LeledometroStratou.NoActionBar">
         <activity android:name=".DonateActivity">
-<!--            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity"/>-->
 
         </activity>
         <activity android:name=".MainActivity">

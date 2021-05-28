@@ -15,4 +15,10 @@
     <string name="donate_2">Donate 2€</string>
     <string name="donate_5">Donate 5€</string>
     <string name="donate_10">Donate 10€</string>
+    <string name="namePlaceholder">Όνομα</string>
+    <string name="dismissal_placeholder">Ημ/νια Απόλυσης</string>
+    <string name="enlistment_placeholder">Ημ/νια Κατάταξης</string>
+    <string name="seira">Σειρά</string>
+    <string name="esso">ΕΣΣΟ</string>
+    <string name="save_changes">Ενημερωση</string>
 </resources>

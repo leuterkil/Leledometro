@@ -1,13 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".info.Info">
+    android:orientation="vertical"
+    tools:context=".info.Info" >
 
-    <TextView
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="54dp" />
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/namePlaceholder"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextDateOfEnlistment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:ems="10"
+            android:hint="@string/enlistment_placeholder"
+            android:inputType="date" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextDateOfDismissal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:ems="10"
+            android:hint="@string/dismissal_placeholder"
+            android:inputType="date" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextESSO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/esso"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextSeira"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:ems="10"
+            android:hint="@string/seira"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/Corps"
+        style="@style/spinner_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:text="@string/save_changes"
+        android:backgroundTint="@color/armyGreenSub"
+        />
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/typeOfArmyFlag"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:padding="5dp"
+        app:srcCompat="@mipmap/ic_app_icon" />
+
+    <TextView
+        android:id="@+id/TypeNameArmy"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginStart="-1dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toEndOf="@+id/ivFlag"
+        android:layout_toRightOf="@+id/ivFlag"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="TextView"
+        android:textColor="@color/black" />
+</RelativeLayout>
