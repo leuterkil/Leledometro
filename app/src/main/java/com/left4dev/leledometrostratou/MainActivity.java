@@ -9,11 +9,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 import com.left4dev.leledometrostratou.about.About;
-import com.left4dev.leledometrostratou.corps.Corps;
+import com.left4dev.leledometrostratou.corps.CorpsFragment;
 import com.left4dev.leledometrostratou.dictionary.Dictionary;
 import com.left4dev.leledometrostratou.home.Home;
 import com.left4dev.leledometrostratou.info.Info;
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.corps:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Corps()).commit();
+                        new CorpsFragment()).commit();
                 toolbar.setTitle(item.getTitle());
                 break;
 
@@ -110,3 +109,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 }
+
+//todo make corps page
