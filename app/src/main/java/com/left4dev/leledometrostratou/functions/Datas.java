@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Datas {
 
     public void SaveChanges(Context context, String name, String dateOfEnlistment, String dateOfDismissal
-            , String esso, String series, int Image, String corpTitle) {
+            , String esso, String series, String Image, String corpTitle,int position ) {
 
         try
         {
@@ -46,11 +46,14 @@ public class Datas {
             xmlSerializer.text(series);
             xmlSerializer.endTag(null,"Series");
             xmlSerializer.startTag(null,"CorpImage");
-            xmlSerializer.text(Integer.toString(Image));
+            xmlSerializer.text(Image);
             xmlSerializer.endTag(null,"CorpImage");
             xmlSerializer.startTag(null,"CorpTitle");
             xmlSerializer.text(corpTitle);
             xmlSerializer.endTag(null,"CorpTitle");
+            xmlSerializer.startTag(null,"Position");
+            xmlSerializer.text(Integer.toString(position));
+            xmlSerializer.endTag(null,"Position");
             xmlSerializer.endTag(null, "userData");
             xmlSerializer.endDocument();
             xmlSerializer.flush();

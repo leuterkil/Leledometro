@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle(item.getTitle());
                 break;
 
-            case R.id.ranks:
+            case R.id.ranksRecyclerView:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Ranks()).commit();
                 toolbar.setTitle(item.getTitle());

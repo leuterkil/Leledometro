@@ -1,31 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:padding="16dp"
-    android:background="@color/armyGreenSub"
-    android:orientation="vertical">
+    android:background="@color/armyGreenSub">
 
-    <ImageView
-        android:id="@+id/headerImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/headTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="User Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/white" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/headSubTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Usermail@gail.com"
-        android:textColor="@color/subtitle" />
+            <ImageView
+                android:id="@+id/headerImage"
+                android:layout_width="110dp"
+                android:layout_height="105dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:srcCompat="@mipmap/ic_efodiasmou" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewEsso"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="14dp"
+                    android:text="@string/esso"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/textViewSeries"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:paddingLeft="14dp"
+                    android:text="@string/seira"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/headTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:text="User Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/headSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:text="Usermail@gail.com"
+            android:textColor="@color/subtitle" />
+    </LinearLayout>
+
 </LinearLayout>

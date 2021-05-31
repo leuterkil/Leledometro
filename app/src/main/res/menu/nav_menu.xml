@@ -24,7 +24,7 @@
         android:icon="@drawable/ic_emblem"
         android:title="Σώματα Στρατού Ξηράς" />
     <item
-        android:id="@+id/ranks"
+        android:id="@+id/ranksRecyclerView"
         android:checkable="true"
         android:icon="@drawable/ic_ranks"
         android:title="Βαθμοί Αξιωματικών" />

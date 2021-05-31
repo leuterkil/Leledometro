@@ -16,8 +16,8 @@
             android:layout_width="212dp"
             android:layout_height="210dp"
             android:layout_gravity="center"
-            android:contentDescription="@string/content_desc_logo"
-            android:src="@mipmap/ic_app_icon_foreground" />
+            app:srcCompat="@mipmap/ic_application_foreground"
+            tools:srcCompat="@mipmap/ic_application_foreground" />
 
         <TextView
             android:id="@+id/textAppName"

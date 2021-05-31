@@ -46,7 +46,7 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
     private Button saveButton;
 
     private int ImageID;
-    private String CorpTitle;
+    private String CorpTitle,Image;
 
 
     public static Info newInstance() {
@@ -114,7 +114,7 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
             dateOfDismissal.setText(userDatas.get(2));
             Esso.setText(userDatas.get(3));
             Series.setText(userDatas.get(4));
-            corpsSpinner.setSelection(Integer.parseInt(userDatas.get(5)));
+            corpsSpinner.setSelection(Integer.parseInt(userDatas.get(7)));
         }
 
     }
@@ -140,7 +140,7 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
                 String series = Series.getText().toString();
                 String doe = dateOfEnlistment.getText().toString();
                 String dod = dateOfDismissal.getText().toString();
-                datas.SaveChanges(getActivity(),name,doe,dod,esso,series,ImageID,CorpTitle);
+                datas.SaveChanges(getActivity(),name,doe,dod,esso,series,Image,CorpTitle,ImageID);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Home()).commit();
                 break;
@@ -152,6 +152,7 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         setCorpTitle(corps.getTitle(i));
+        setImage(Integer.toString(corps.getImage(i)));
         setImageID(i);
     }
 
@@ -166,5 +167,9 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
 
     public void setCorpTitle(String corpTitle) {
         CorpTitle = corpTitle;
+    }
+    public void setImage(String image)
+    {
+        Image = image;
     }
 }

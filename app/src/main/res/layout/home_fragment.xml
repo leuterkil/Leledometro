@@ -1,15 +1,305 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="right"
+    android:orientation="vertical"
     tools:context=".home.Home">
 
-    <TextView
-        android:id="@+id/homeText"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="167dp"
+        android:background="#2B2B2B"
+        android:scaleType="center"
+        android:src="@drawable/camouflage" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="195dp"
+        android:layout_marginTop="-115dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="221dp"
+            android:layout_weight="1"
+            android:src="@drawable/aerometaferomenos" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="221dp"
+            android:layout_height="189dp"
+            android:layout_gravity="right">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="252dp"
+                android:layout_height="240dp"
+                android:background="@drawable/circle_background"
+                android:indeterminateOnly="false"
+                android:progressDrawable="@drawable/circle"
+                android:rotation="270"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:progress="20" />
+
+            <TextView
+                android:id="@+id/textViewMeres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99ΚΣ"
+                android:textColor="@color/white"
+                android:textSize="46sp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="0.311" />
+
+            <TextView
+                android:id="@+id/textView465"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ypiretithinkan"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintHorizontal_bias="0.39"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="0.57" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/synolo"
+                android:textColor="@color/subtitle"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintHorizontal_bias="0.28"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="0.672" />
+
+            <TextView
+                android:id="@+id/textViewYpiretithikan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView465"
+                app:layout_constraintStart_toEndOf="@+id/textView465" />
+
+            <TextView
+                android:id="@+id/textViewApomenoun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/textView3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Λευτέρης Χαρισσόπουλος"
+            android:textColor="@color/armyGreenSub"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/imageViewRankHome"
+            android:layout_width="168dp"
+            android:layout_height="95dp"
+            app:srcCompat="@drawable/diakritiko_stratos_xiras_antistratigos"
+            tools:src="@drawable/diakritiko_stratos_xiras_antistratigos" />
+
+        <TextView
+            android:id="@+id/textViewRankName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Υποστράτηγος"
+            android:textAlignment="center"
+            android:textColor="@color/armyGreenSub"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="149dp"
+            android:layout_height="78dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/container_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView321"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:text="Σύνολο Αδειών"
+                android:textColor="@color/loading_blue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewRepoDays"
+                android:layout_width="127dp"
+                android:layout_height="wrap_content"
+                android:text="19/25"
+                android:textAlignment="textEnd"
+                android:textColor="@color/armyGreenSub"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="146dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/container_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView322"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:text="Υπηρεσίες"
+                android:textColor="@color/loading_blue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView323"
+                android:layout_width="127dp"
+                android:layout_height="wrap_content"
+                android:text="19"
+                android:textAlignment="textEnd"
+                android:textColor="@color/armyGreenSub"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="149dp"
+            android:layout_height="78dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/container_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView327"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:text="Φυλακές"
+                android:textColor="@color/loading_blue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewPrisons"
+                android:layout_width="127dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/armyGreenSub"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="146dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/container_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView325"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:text="Στερήσεις"
+                android:textColor="@color/loading_blue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewOuts"
+                android:layout_width="127dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/armyGreenSub"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="HOME PAGE"
-        android:textSize="30sp" />
+        android:gravity="bottom|right"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="44dp"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add" />
+    </LinearLayout>
+
+</LinearLayout>

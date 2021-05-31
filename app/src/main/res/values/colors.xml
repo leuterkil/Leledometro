@@ -16,4 +16,6 @@
     <color name="button_mail">#49b1b6</color>
     <color name="fb_blue">#4267B2</color>
     <!--    -->
+<!--    other-->
+    <color name="loading_blue">#007599</color>
 </resources>
