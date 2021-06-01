@@ -24,7 +24,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/imageViewTyposSkoufou"
             android:layout_width="wrap_content"
             android:layout_height="221dp"
             android:layout_weight="1"
@@ -104,7 +104,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView465" />
 
             <TextView
-                android:id="@+id/textViewApomenoun"
+                android:id="@+id/textViewSynolo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
@@ -114,6 +114,19 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView3"
                 app:layout_constraintStart_toEndOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textViewPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99.9%"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textViewYpiretithikan"
+                app:layout_constraintHorizontal_bias="0.625"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.905" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
@@ -127,7 +140,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/textViewNameOfSoldier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -139,11 +152,10 @@
             android:id="@+id/imageViewRankHome"
             android:layout_width="168dp"
             android:layout_height="95dp"
-            app:srcCompat="@drawable/diakritiko_stratos_xiras_antistratigos"
             tools:src="@drawable/diakritiko_stratos_xiras_antistratigos" />
 
         <TextView
-            android:id="@+id/textViewRankName"
+            android:id="@+id/textViewRankNameHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Υποστράτηγος"
@@ -286,20 +298,96 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floatMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom|right"
-        android:orientation="vertical">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-720dp"
+        android:paddingRight="14dp"
+        android:paddingBottom="14dp"
+        app:menu_animationDelayPerItem="50"
+        app:menu_backgroundColor="#ccffffff"
+        app:menu_buttonSpacing="0dp"
+        app:menu_colorNormal="@color/armyGreenSub"
+        app:menu_colorPressed="@color/ArmyGreen"
+        app:menu_colorRipple="#99FFFFFF"
+        app:menu_fab_label="Κλείσιμο"
+        app:menu_fab_size="normal"
+        app:menu_icon="@drawable/fab_add"
+        app:menu_labels_colorNormal="#333333"
+        app:menu_labels_colorPressed="#444444"
+        app:menu_labels_colorRipple="#66FFFFFF"
+        app:menu_labels_cornerRadius="3dp"
+        app:menu_labels_ellipsize="none"
+        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        app:menu_labels_margin="0dp"
+        app:menu_labels_maxLines="-1"
+        app:menu_labels_padding="8dp"
+        app:menu_labels_paddingBottom="44dp"
+        app:menu_labels_paddingLeft="8dp"
+        app:menu_labels_paddingRight="8dp"
+        app:menu_labels_paddingTop="4dp"
+        app:menu_labels_position="left"
+        app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        app:menu_labels_showShadow="true"
+        app:menu_labels_singleLine="false"
+        app:menu_labels_textColor="#FFFFFF"
+        app:menu_labels_textSize="14sp"
+        app:menu_openDirection="up"
+        app:menu_shadowColor="#66000000"
+        app:menu_shadowRadius="4dp"
+        app:menu_shadowXOffset="1dp"
+        app:menu_shadowYOffset="3dp"
+        app:menu_showShadow="true">
+        <!--            app:menu_fab_show_animation="@anim/my_show_animation"-->
+        <!--            app:menu_fab_hide_animation="@anim/my_hide_animation">-->
+        <!--            app:menu_labels_style="@style/YourCustomLabelsStyle" -->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/penalty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="44dp"
-            android:clickable="true"
-            android:src="@android:drawable/ic_input_add" />
-    </LinearLayout>
+            android:src="@drawable/ic_baseline_penalty24"
+            app:fab_colorNormal="@color/armyGreenSub"
+            app:fab_colorPressed="@color/ArmyGreen"
+            app:fab_colorRipple="#99FFFFFF"
+            app:fab_label="Ποινή"
+            app:fab_size="mini" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/vacation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_adeia_24"
+            app:fab_colorNormal="@color/armyGreenSub"
+            app:fab_colorPressed="@color/ArmyGreen"
+            app:fab_colorRipple="#99FFFFFF"
+            app:fab_label="Άδεια"
+            app:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_follow_the_signs_24"
+            app:fab_colorNormal="@color/armyGreenSub"
+            app:fab_colorPressed="@color/ArmyGreen"
+            app:fab_colorRipple="#99FFFFFF"
+            app:fab_label="Έξοδος"
+            app:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_service"
+            app:fab_colorNormal="@color/armyGreenSub"
+            app:fab_colorPressed="@color/ArmyGreen"
+            app:fab_colorRipple="#99FFFFFF"
+            app:fab_label="Υπηρεσία"
+            app:fab_size="mini" />
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 </LinearLayout>
