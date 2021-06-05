@@ -23,4 +23,11 @@
     <string name="save_changes">Ενημερωση</string>
     <string name="synolo">Σύνολο :</string>
     <string name="ypiretithinkan">Υπηρετήθηκαν :</string>
+    <string name="date_of_service_placeholder">Ημ/νια Υπηρεσίας</string>
+
+<!--    Paths-->
+    <string name="services_path">/data/user/0/com.left4dev.leledometrostratou/files/ServicesData.xml</string>
+    <string name="vacations_path">/data/user/0/com.left4dev.leledometrostratou/files/VacationsData.xml</string>
+    <string name="personal_info_path">/data/user/0/com.left4dev.leledometrostratou/files/personalData.xml</string>
+<!--    -->
 </resources>

@@ -220,7 +220,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView323"
+                android:id="@+id/textViewServiceTotal"
                 android:layout_width="127dp"
                 android:layout_height="wrap_content"
                 android:text="19"
@@ -346,7 +346,7 @@
         <!--            app:menu_labels_style="@style/YourCustomLabelsStyle" -->
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/penalty"
+            android:id="@+id/Floatpenalty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_penalty24"
@@ -356,7 +356,7 @@
             app:fab_label="Ποινή"
             app:fab_size="mini" />
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/vacation"
+            android:id="@+id/Floatvacation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_adeia_24"
@@ -367,7 +367,7 @@
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/out"
+            android:id="@+id/Floatout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_follow_the_signs_24"
@@ -378,7 +378,7 @@
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/services"
+            android:id="@+id/Floatservices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_service"

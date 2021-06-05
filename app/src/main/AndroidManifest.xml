@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_application"
         android:supportsRtl="true"
         android:theme="@style/Theme.LeledometroStratou.NoActionBar">
-        <activity android:name=".DonateActivity">
-
-        </activity>
+        <activity android:name=".floatbuttonclasses.PenaltyMainActivity"></activity>
+        <activity android:name=".floatbuttonclasses.OutsActivity" />
+        <activity android:name=".floatbuttonclasses.VacationActivity" />
+        <activity android:name=".floatbuttonclasses.ServiceActivity" />
+        <activity android:name=".DonateActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

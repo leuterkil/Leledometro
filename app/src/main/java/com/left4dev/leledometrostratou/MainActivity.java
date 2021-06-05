@@ -18,7 +18,9 @@ import com.left4dev.leledometrostratou.home.Home;
 import com.left4dev.leledometrostratou.info.Info;
 import com.left4dev.leledometrostratou.notebook.Notebook;
 import com.left4dev.leledometrostratou.ranks.Ranks;
-import com.left4dev.leledometrostratou.services.Services;
+import com.left4dev.leledometrostratou.services.ServicesFragment;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -46,12 +48,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Home()).commit();
+        File f = new File("/data/user/0/com.left4dev.leledometrostratou/files/personalData.xml");
+        if (f.exists())
+        {
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Home()).commit();
 
-            navigationView.setCheckedItem(R.id.home);
+                navigationView.setCheckedItem(R.id.home);
+            }
         }
+        else
+        {
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Info()).commit();
+
+                navigationView.setCheckedItem(R.id.info);
+            }
+        }
+
     }
 
 //    this override method selects a menu item and shows the fragment
@@ -97,9 +113,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new Notebook()).commit();
                 toolbar.setTitle(item.getTitle());
                 break;
-            case R.id.services:
+            case R.id.Floatservices:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Services()).commit();
+                        new ServicesFragment()).commit();
                 toolbar.setTitle(item.getTitle());
                 break;
         }

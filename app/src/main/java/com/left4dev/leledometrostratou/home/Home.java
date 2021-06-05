@@ -3,6 +3,7 @@ package com.left4dev.leledometrostratou.home;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -21,27 +22,32 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.navigation.NavigationView;
 import com.left4dev.leledometrostratou.R;
+import com.left4dev.leledometrostratou.floatbuttonclasses.ServiceActivity;
+import com.left4dev.leledometrostratou.floatbuttonclasses.VacationActivity;
 import com.left4dev.leledometrostratou.functions.Datas;
+import com.left4dev.leledometrostratou.functions.ServiceDatas;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import static java.time.temporal.ChronoUnit.DAYS;
-
-public class Home extends Fragment {
+public class Home extends Fragment implements View.OnClickListener {
 
     private HomeViewModel mViewModel;
     private TextView headerTitle,headerSubtitle,headerESSO,headerSeries,KS,Ypiretithikan,Synolo,Percent;
-    private TextView NameOfSoldier,NameOfRank;
+    private TextView NameOfSoldier,NameOfRank,TotalServices;
     private ImageView headerImage,SoldierImage,RankImage;
     private Datas data = new Datas();
     private ArrayList<String> userData;
+    private ArrayList<ServiceDatas> userServices;
     private FloatingActionMenu floatingActionMenu;
     private FloatingActionButton services,vacation,outs,penalty;
     private ProgressBar progressBar;
@@ -60,6 +66,30 @@ public class Home extends Fragment {
 //        initialize components
         InitializeComponents(fragmentView,header);
         userData = data.loadXML(getActivity());
+        File f = new File(String.valueOf(R.string.services_path));
+
+
+        try
+        {
+            if(f.exists())
+            {
+                userServices = data.loadServices(getActivity());
+                TotalServices.setText(Integer.toString(userServices.size()));
+            }
+            else
+            {
+                TotalServices.setText("0");
+            }
+        } catch (IOException | XmlPullParserException e)
+        {
+            e.printStackTrace();
+        }
+
+
+        services.setOnClickListener(this);
+        vacation.setOnClickListener(this);
+        outs.setOnClickListener(this);
+        penalty.setOnClickListener(this);
 
         headerTitle.setText(userData.get(0));
         headerESSO.setText("ΕΣΣΟ: "+userData.get(3));
@@ -67,6 +97,7 @@ public class Home extends Fragment {
         headerSubtitle.setText(userData.get(6));
         headerImage.setImageResource(Integer.parseInt(userData.get(5)));
         NameOfSoldier.setText(userData.get(0));
+
 
         floatingActionMenu.setClosedOnTouchOutside(true);
         return fragmentView;
@@ -118,6 +149,8 @@ public class Home extends Fragment {
 
 
         Synolo.setText(mViewModel.KS(Start,End));
+
+
         float synolo,ypiretithikan;
         synolo = Float.parseFloat(mViewModel.KS(Start,End));
         ypiretithikan = Float.parseFloat(mViewModel.KS(Start,c));
@@ -148,6 +181,7 @@ public class Home extends Fragment {
     private void InitializeComponents(View fragmentView,View header)
     {
         headerTitle = header.findViewById(R.id.headTitle);
+        TotalServices = fragmentView.findViewById(R.id.textViewServiceTotal);
         KS = fragmentView.findViewById(R.id.textViewMeres);
         Ypiretithikan = fragmentView.findViewById(R.id.textViewYpiretithikan);
         Percent = fragmentView.findViewById(R.id.textViewPercentage);
@@ -158,13 +192,34 @@ public class Home extends Fragment {
         headerSeries = header.findViewById(R.id.textViewSeries);
         headerImage = header.findViewById(R.id.headerImage);
         floatingActionMenu = fragmentView.findViewById(R.id.floatMenu);
-        penalty = floatingActionMenu.findViewById(R.id.penalty);
-        outs = floatingActionMenu.findViewById(R.id.out);
-        vacation = floatingActionMenu.findViewById(R.id.vacation);
-        services = floatingActionMenu.findViewById(R.id.services);
+        penalty = floatingActionMenu.findViewById(R.id.Floatpenalty);
+        outs = floatingActionMenu.findViewById(R.id.Floatout);
+        vacation = floatingActionMenu.findViewById(R.id.Floatvacation);
+        services = floatingActionMenu.findViewById(R.id.Floatservices);
         SoldierImage = fragmentView.findViewById(R.id.imageViewTyposSkoufou);
         NameOfSoldier = fragmentView.findViewById(R.id.textViewNameOfSoldier);
         NameOfRank = fragmentView.findViewById(R.id.textViewRankNameHome);
         RankImage = fragmentView.findViewById(R.id.imageViewRankHome);
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.Floatservices:
+                Intent intent = new Intent(getActivity(), ServiceActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.Floatpenalty:
+                break;
+            case R.id.Floatvacation:
+                Intent intentVacations = new Intent(getActivity(), VacationActivity.class);
+                startActivity(intentVacations);
+                break;
+            case R.id.Floatout:
+                break;
+        }
     }
 }

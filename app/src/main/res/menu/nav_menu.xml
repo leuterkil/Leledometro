@@ -34,7 +34,7 @@
         android:icon="@drawable/ic_baseline_menu_book_24"
         android:title="Σημειωματάριο" />
     <item
-        android:id="@+id/services"
+        android:id="@+id/Floatservices"
         android:checkable="true"
         android:icon="@drawable/ic_services"
         android:title="Υπηρεσίες και Άδειες" />

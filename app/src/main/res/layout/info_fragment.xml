@@ -121,7 +121,8 @@
         style="@style/spinner_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp" />
+        android:layout_marginTop="64dp"
+        android:spinnerMode="dialog" />
 
     <Button
         android:id="@+id/buttonSave"
