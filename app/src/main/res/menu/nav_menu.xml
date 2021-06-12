@@ -17,7 +17,7 @@
         android:id="@+id/dictionary"
         android:checkable="true"
         android:icon="@drawable/ic_dictionary"
-        android:title="Λεξικό" />
+        android:title="Πληροφορίες και Συμβουλές" />
     <item
         android:id="@+id/corps"
         android:checkable="true"

@@ -1,13 +1,24 @@
 package com.left4dev.leledometrostratou.home;
 
-import com.left4dev.leledometrostratou.R;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.left4dev.leledometrostratou.MainActivity;
+import com.left4dev.leledometrostratou.R;
+import com.left4dev.leledometrostratou.functions.Datas;
+
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
@@ -290,4 +301,40 @@ public class HomeViewModel extends ViewModel {
 
         return Name;
     }
+
+    public AlertDialog confirm(Context context, String TotalOpositeText, Datas datas, String Type, TextView textView)
+    {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        // set title
+
+        alertDialogBuilder.setTitle("Είσαι Σίγουρος;");
+        alertDialogBuilder.setIcon(R.drawable.ic_baseline_delete_forever_24);
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Πρόκειται να διαγραφούν όλες σου οι ποινές.\n Διαγραφή?")
+                .setCancelable(false)
+                .setPositiveButton("Επιβεβαίωση",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        File f = new File(context.getString(R.string.penalties_path));
+                        textView.setText("0");
+                        if (TotalOpositeText.equals("0")) {
+                            f.delete();
+                        } else {
+                            datas.CreatePenaltiesFile(context, Type, TotalOpositeText);
+                        }
+                    }
+                })
+                .setNegativeButton("Ακύρωση",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        return alertDialog;
+    }
+
+
 }

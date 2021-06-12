@@ -286,7 +286,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewOuts"
+                android:id="@+id/textViewNoOuts"
                 android:layout_width="127dp"
                 android:layout_height="wrap_content"
                 android:text="0"

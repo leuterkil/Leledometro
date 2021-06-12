@@ -1,13 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".notebook.Notebook">
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextASM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/asm_placeholder"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextIdNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/id_num_placeholder"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextGunNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/gun_num_placeholder"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/armyGreenSub"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/armyGreenSub">
+
+        <EditText
+            android:id="@+id/editTextKnifeNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/knife_num_placeholder"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="false"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonSaveNotebook"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:text="@string/save_changes"
+        android:backgroundTint="@color/armyGreenSub"
+        />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:gravity="bottom"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="bottom"
+            android:layout_weight="0"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -8,8 +8,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.navigation.NavigationView;
 import com.left4dev.leledometrostratou.about.About;
 import com.left4dev.leledometrostratou.corps.CorpsFragment;
@@ -34,6 +38,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar); //MUST ENABLE NOACTIONBAR THEME IN MANIFEST FILE!!!!!
 
@@ -48,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
-        File f = new File("/data/user/0/com.left4dev.leledometrostratou/files/personalData.xml");
+        File f = new File(getString(R.string.personal_info_path));
         if (f.exists())
         {
             if (savedInstanceState == null) {
@@ -124,6 +135,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-}
 
-//todo make corps page
+
+}

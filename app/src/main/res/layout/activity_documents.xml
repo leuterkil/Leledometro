@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="14dp"
+    android:orientation="vertical"
+    tools:context=".dictionary.Dictionary">
+
+    <Button
+        android:id="@+id/buttonParagelmata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:backgroundTint="#00ffffff"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:text=" Παραγγέλματα"
+        android:textAlignment="center"
+        android:textColor="@color/armyGreenSub"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_media_play"
+        app:iconGravity="end"
+        app:iconTint="@color/armyGreenSub"
+        app:rippleColor="@color/ic_application_background"
+        app:strokeColor="@color/armyGreenSub"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/buttonTiNaParo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:backgroundTint="#00ffffff"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:text="Τι να πάρω μαζί μου στον στρατό"
+        android:textAlignment="center"
+        android:textColor="@color/armyGreenSub"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_media_play"
+        app:iconGravity="end"
+        app:iconTint="@color/armyGreenSub"
+        app:rippleColor="@color/ic_application_background"
+        app:strokeColor="@color/armyGreenSub"
+        app:strokeWidth="3dp" />
+    <Button
+        android:id="@+id/buttonXairetismoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:backgroundTint="#00ffffff"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:text="Τρόποι Χαιρετισμού και Παρουσίασης"
+        android:textAlignment="center"
+        android:textColor="@color/armyGreenSub"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_media_play"
+        app:iconGravity="end"
+        app:iconTint="@color/armyGreenSub"
+        app:rippleColor="@color/ic_application_background"
+        app:strokeColor="@color/armyGreenSub"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/buttonDictionary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:backgroundTint="#00ffffff"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:text="Λεξικό"
+        android:textAlignment="center"
+        android:textColor="@color/armyGreenSub"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_media_play"
+        app:iconGravity="end"
+        app:iconTint="@color/armyGreenSub"
+        app:rippleColor="@color/ic_application_background"
+        app:strokeColor="@color/armyGreenSub"
+        app:strokeWidth="3dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewDocuments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="bottom"
+            android:layout_weight="0"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+    </LinearLayout>
+</LinearLayout>

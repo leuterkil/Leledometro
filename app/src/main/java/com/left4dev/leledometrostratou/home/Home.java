@@ -1,8 +1,12 @@
 package com.left4dev.leledometrostratou.home;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,10 +26,14 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.navigation.NavigationView;
 import com.left4dev.leledometrostratou.R;
+import com.left4dev.leledometrostratou.floatbuttonclasses.OutsActivity;
+import com.left4dev.leledometrostratou.floatbuttonclasses.PenaltyMainActivity;
 import com.left4dev.leledometrostratou.floatbuttonclasses.ServiceActivity;
 import com.left4dev.leledometrostratou.floatbuttonclasses.VacationActivity;
 import com.left4dev.leledometrostratou.functions.Datas;
+import com.left4dev.leledometrostratou.functions.PenaltyDatas;
 import com.left4dev.leledometrostratou.functions.ServiceDatas;
+import com.left4dev.leledometrostratou.functions.VacationDatas;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -39,18 +47,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class Home extends Fragment implements View.OnClickListener {
+public class Home extends Fragment implements View.OnClickListener, View.OnLongClickListener {
 
     private HomeViewModel mViewModel;
     private TextView headerTitle,headerSubtitle,headerESSO,headerSeries,KS,Ypiretithikan,Synolo,Percent;
-    private TextView NameOfSoldier,NameOfRank,TotalServices;
+    private TextView NameOfSoldier,NameOfRank,TotalServices,TotalPrisons,TotalNoOuts,TotalVacations;
     private ImageView headerImage,SoldierImage,RankImage;
     private Datas data = new Datas();
     private ArrayList<String> userData;
     private ArrayList<ServiceDatas> userServices;
+    private ArrayList<PenaltyDatas> userPenalties;
+    private ArrayList<VacationDatas> userVacations;
     private FloatingActionMenu floatingActionMenu;
     private FloatingActionButton services,vacation,outs,penalty;
     private ProgressBar progressBar;
+    private Toolbar toolbar;
 
     public static Home newInstance() {
         return new Home();
@@ -62,11 +73,16 @@ public class Home extends Fragment implements View.OnClickListener {
         View fragmentView = inflater.inflate(R.layout.home_fragment, container, false);
         NavigationView navigationView = getActivity().findViewById(R.id.navigation_view);
         View header = navigationView.getHeaderView(0);
+        toolbar = getActivity().findViewById(R.id.toolbar);
+        navigationView.setCheckedItem(R.id.home);
+        toolbar.setTitle(R.string.app_name);
 
 //        initialize components
         InitializeComponents(fragmentView,header);
         userData = data.loadXML(getActivity());
-        File f = new File(String.valueOf(R.string.services_path));
+        File f = new File(getString(R.string.services_path));
+        File f2 = new File(getString(R.string.penalties_path));
+        File f3 = new File(getString(R.string.vacations_path));
 
 
         try
@@ -85,11 +101,89 @@ public class Home extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
 
+        if (f2.exists())
+        {
+            try {
+                userPenalties = data.loadPenalties(getActivity());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            }
+
+            String typeOfPenalty;
+            int prisons=0,noOuts=0;
+            for (int i=0;i<userPenalties.size();i++)
+            {
+                typeOfPenalty = userPenalties.get(i).getType();
+
+                if (typeOfPenalty.equals("Φυλακή"))
+                {
+                    prisons = prisons + Integer.parseInt(userPenalties.get(0).getDays());
+                }
+                else
+                {
+                    noOuts = noOuts + Integer.parseInt(userPenalties.get(0).getDays());
+                }
+            }
+
+            TotalPrisons.setText(Integer.toString(prisons));
+            TotalNoOuts.setText(Integer.toString(noOuts));
+
+        }
+        else
+        {
+            TotalPrisons.setText("0");
+            TotalNoOuts.setText("0");
+        }
+
+        if (f3.exists())
+        {
+            try {
+                userVacations = data.loadVacations(getActivity());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd  MMM  yyyy",Locale.US);
+            long TotalDaysOfVac = 0;
+            for (int i=0;i<userVacations.size();i++)
+            {
+                Date dateStart = new Date(),dateEnd = new Date();
+                try {
+                     dateStart = sdf.parse(userVacations.get(i).getStartDate());
+                     dateEnd = sdf.parse(userVacations.get(i).getEndDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                long different = dateEnd.getTime() - dateStart.getTime();
+
+                long secondsInMilli = 1000;
+                long minutesInMilli = secondsInMilli * 60;
+                long hoursInMilli = minutesInMilli * 60;
+                long daysInMilli = hoursInMilli * 24;
+
+                long elapsedDays = different / daysInMilli;
+                TotalDaysOfVac = TotalDaysOfVac+elapsedDays;
+            }
+            TotalDaysOfVac+=2;
+            TotalVacations.setText(Long.toString(TotalDaysOfVac));
+        }
+        else
+        {
+            TotalVacations.setText("0");
+        }
+
 
         services.setOnClickListener(this);
         vacation.setOnClickListener(this);
         outs.setOnClickListener(this);
         penalty.setOnClickListener(this);
+        TotalNoOuts.setOnLongClickListener(this);
+        TotalPrisons.setOnLongClickListener(this);
 
         headerTitle.setText(userData.get(0));
         headerESSO.setText("ΕΣΣΟ: "+userData.get(3));
@@ -182,6 +276,8 @@ public class Home extends Fragment implements View.OnClickListener {
     {
         headerTitle = header.findViewById(R.id.headTitle);
         TotalServices = fragmentView.findViewById(R.id.textViewServiceTotal);
+        TotalPrisons = fragmentView.findViewById(R.id.textViewPrisons);
+        TotalNoOuts = fragmentView.findViewById(R.id.textViewNoOuts);
         KS = fragmentView.findViewById(R.id.textViewMeres);
         Ypiretithikan = fragmentView.findViewById(R.id.textViewYpiretithikan);
         Percent = fragmentView.findViewById(R.id.textViewPercentage);
@@ -189,6 +285,7 @@ public class Home extends Fragment implements View.OnClickListener {
         progressBar = fragmentView.findViewById(R.id.progressBar);
         headerSubtitle = header.findViewById(R.id.headSubTitle);
         headerESSO = header.findViewById(R.id.textViewEsso);
+        TotalVacations = fragmentView.findViewById(R.id.textViewRepoDays);
         headerSeries = header.findViewById(R.id.textViewSeries);
         headerImage = header.findViewById(R.id.headerImage);
         floatingActionMenu = fragmentView.findViewById(R.id.floatMenu);
@@ -213,13 +310,62 @@ public class Home extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.Floatpenalty:
+                Intent intentPenalties = new Intent(getActivity(), PenaltyMainActivity.class);
+                startActivity(intentPenalties);
                 break;
             case R.id.Floatvacation:
                 Intent intentVacations = new Intent(getActivity(), VacationActivity.class);
                 startActivity(intentVacations);
                 break;
             case R.id.Floatout:
+                Intent intentOuts = new Intent(getActivity(), OutsActivity.class);
+                startActivity(intentOuts);
                 break;
         }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                getActivity().finish();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.textViewPrisons:
+                if (TotalPrisons.getText().toString().equals("0"))
+                {
+                    return true;
+                }
+                else
+                {
+                    AlertDialog alertDialog = mViewModel.confirm(getActivity(),TotalNoOuts.getText().toString(),data
+                            ,"Στέρηση Εξόδου",TotalPrisons);
+                    alertDialog.show();
+                }
+                break;
+            case R.id.textViewNoOuts:
+                if (TotalNoOuts.getText().toString().equals("0"))
+                {
+                    return true;
+                }
+                else
+                {
+                    AlertDialog alertDialog = mViewModel.confirm(getActivity(),TotalPrisons.getText().toString(),data
+                            ,"Φυλακή",TotalNoOuts);
+                    alertDialog.show();
+                }
+                break;
+        }
+        return true;
     }
 }

@@ -59,7 +59,7 @@ public class ListOfServicesFragment extends Fragment implements View.OnClickList
         expListView = fragmentView.findViewById(R.id.lvExp);
         DeleteAll = fragmentView.findViewById(R.id.buttonDeleteAllServices);
 
-        File f = new File("/data/user/0/com.left4dev.leledometrostratou/files/ServicesData.xml");
+        File f = new File(getString(R.string.services_path));
         if (f.exists()) {
             try {
                 if (!datas.loadServices(getActivity()).isEmpty()) {
@@ -129,7 +129,7 @@ public class ListOfServicesFragment extends Fragment implements View.OnClickList
         switch (v.getId())
         {
             case R.id.buttonDeleteAllServices:
-                AlertDialog alertDialog = mViewModel.confirm(getActivity());
+                AlertDialog alertDialog = mViewModel.confirm(getActivity(),getActivity());
                 alertDialog.show();
                 break;
         }

@@ -1,19 +1,29 @@
 package com.left4dev.leledometrostratou.floatbuttonclasses;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.left4dev.leledometrostratou.MainActivity;
 import com.left4dev.leledometrostratou.R;
 import com.left4dev.leledometrostratou.functions.Datas;
@@ -23,6 +33,8 @@ import com.left4dev.leledometrostratou.spinners.vacation.VacationsAdapter;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+
+import static android.content.ContentValues.TAG;
 
 public class VacationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
@@ -36,6 +48,8 @@ public class VacationActivity extends AppCompatActivity implements AdapterView.O
     private Button saveButton;
     private Datas datas = new Datas();
     private Vacations vacations = new Vacations();
+    private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
 
     private String type;
 
@@ -56,6 +70,47 @@ public class VacationActivity extends AppCompatActivity implements AdapterView.O
     private void InitializeComponents()
     {
         typeOfVacation = findViewById(R.id.spinnerVacationType);
+        mAdView = findViewById(R.id.adViewVacations);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+                Log.i(TAG, "onAdLoaded");
+                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        // Called when fullscreen content is dismissed.
+                        Log.d("TAG", "The ad was dismissed.");
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(AdError adError) {
+                        // Called when fullscreen content failed to show.
+                        Log.d("TAG", "The ad failed to show.");
+                    }
+
+                    @Override
+                    public void onAdShowedFullScreenContent() {
+                        // Called when fullscreen content is shown.
+                        // Make sure to set your reference to null so you don't
+                        // show it a second time.
+                        mInterstitialAd = null;
+                        Log.d("TAG", "The ad was shown.");
+                    }
+                });
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.i(TAG, loadAdError.getMessage());
+                mInterstitialAd = null;
+            }
+        });
         toolbar = findViewById(R.id.toolbarVacations);
         saveButton = findViewById(R.id.buttonSaveVacations);
         startDate = findViewById(R.id.editTextDateOfVacationStart);
@@ -109,14 +164,20 @@ public class VacationActivity extends AppCompatActivity implements AdapterView.O
         switch (v.getId())
         {
             case R.id.buttonSaveVacations:
-                File f = new File("/data/user/0/com.left4dev.leledometrostratou/files/VacationsData.xml");
+                File f = new File(getString(R.string.vacations_path));
                 String startDateString = startDate.getText().toString();
                 String endDateString = endDate.getText().toString();
                 if (!f.exists())
                 {
                     datas.CreateVacationsFile(this,type,startDateString,endDateString);
                     Intent intent = new Intent(this, MainActivity.class);
+                    if (mInterstitialAd != null) {
+                        mInterstitialAd.show(VacationActivity.this);
+                    } else {
+                        Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                    }
                     startActivity(intent);
+                    finishAffinity();
                 }
                 else
                 {
@@ -127,7 +188,13 @@ public class VacationActivity extends AppCompatActivity implements AdapterView.O
                     }
 
                     Intent intent = new Intent(this, MainActivity.class);
+                    if (mInterstitialAd != null) {
+                        mInterstitialAd.show(VacationActivity.this);
+                    } else {
+                        Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                    }
                     startActivity(intent);
+                    finishAffinity();
                 }
                 break;
 

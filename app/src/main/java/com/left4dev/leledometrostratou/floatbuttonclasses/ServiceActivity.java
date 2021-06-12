@@ -15,6 +15,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.left4dev.leledometrostratou.MainActivity;
 import com.left4dev.leledometrostratou.R;
 import com.left4dev.leledometrostratou.functions.Datas;
@@ -27,10 +29,13 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -50,6 +55,7 @@ public class ServiceActivity extends AppCompatActivity implements AdapterView.On
     private Datas datas = new Datas();
     private Toolbar toolbar;
     private Button SaveButton;
+    private AdView mAdView;
 
     private String num,type;
 
@@ -59,6 +65,8 @@ public class ServiceActivity extends AppCompatActivity implements AdapterView.On
         setContentView(R.layout.activity_service);
 
         InitializeComponents();
+
+
 
         typeOfServiceSpinner.setOnItemSelectedListener(this);
         typeOfNumberSpinner.setOnItemSelectedListener(this);
@@ -71,6 +79,9 @@ public class ServiceActivity extends AppCompatActivity implements AdapterView.On
     {
         typeOfServiceSpinner = findViewById(R.id.spinnerServices);
         typeOfNumberSpinner = findViewById(R.id.spinnerNumber);
+        mAdView = findViewById(R.id.adViewServices);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         SaveButton = findViewById(R.id.buttonSaveServices);
         dateOfService = findViewById(R.id.editTextDateOfService);
         numbersAdapter = new NumbersAdapter(this,services.getNumbers());
@@ -84,6 +95,11 @@ public class ServiceActivity extends AppCompatActivity implements AdapterView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         SaveButton.setOnClickListener(this);
+        String myFormat = "dd  MMM  yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        Date c = Calendar.getInstance().getTime();
+        dateOfService.setText(sdf.format(c.getTime()));
+
 
         datePickerService = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -137,13 +153,14 @@ public class ServiceActivity extends AppCompatActivity implements AdapterView.On
                         calendar.get(Calendar.DAY_OF_MONTH)).show();
                 break;
             case R.id.buttonSaveServices:
-                File f = new File(String.valueOf(R.string.services_path));
+                File f = new File(getString(R.string.services_path));
                 String date = dateOfService.getText().toString();
                 if (!f.exists())
                 {
                     datas.CreateServicesFile(this,type,num,date);
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
+                    finishAffinity();
                 }
                 else
                 {
@@ -155,6 +172,7 @@ public class ServiceActivity extends AppCompatActivity implements AdapterView.On
 
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
+                    finishAffinity();
                 }
                 break;
         }

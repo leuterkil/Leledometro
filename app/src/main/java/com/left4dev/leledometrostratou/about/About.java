@@ -1,8 +1,10 @@
 package com.left4dev.leledometrostratou.about;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,13 +19,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.left4dev.leledometrostratou.DonateActivity;
 import com.left4dev.leledometrostratou.R;
+import com.left4dev.leledometrostratou.home.Home;
 
 public class About extends Fragment implements View.OnClickListener {
 
     private AboutViewModel mViewModel;
     private Button instagramButton,buttonFB,donateButton,buttonEmail;
+    private AdView mAdView;
+
 
     public static About newInstance() {
         return new About();
@@ -39,6 +46,9 @@ public class About extends Fragment implements View.OnClickListener {
         donateButton = (Button) fragmentView.findViewById(R.id.donationButton);
         buttonFB = (Button) fragmentView.findViewById(R.id.buttonFB);
         buttonEmail = (Button) fragmentView.findViewById(R.id.buttonEmail);
+        mAdView = fragmentView.findViewById(R.id.adViewAbout);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         //initialize click listeners
         buttonFB.setOnClickListener(this);
         buttonEmail.setOnClickListener(this);
@@ -79,6 +89,18 @@ public class About extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
         }
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Home()).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
 

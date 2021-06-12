@@ -1,7 +1,9 @@
 package com.left4dev.leledometrostratou.ranks;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.left4dev.leledometrostratou.R;
+import com.left4dev.leledometrostratou.home.Home;
 import com.left4dev.leledometrostratou.recyclerviews.corps.CorpsRecyclerAdapter;
 import com.left4dev.leledometrostratou.recyclerviews.ranks.RanksDatas;
 import com.left4dev.leledometrostratou.recyclerviews.ranks.RanksRecyclerAdapter;
@@ -52,6 +55,19 @@ public class Ranks extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(RanksViewModel.class);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Home()).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
 }

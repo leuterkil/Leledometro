@@ -1,5 +1,6 @@
 package com.left4dev.leledometrostratou.tablists;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +16,7 @@ import androidx.lifecycle.ViewModel;
 
 public class ListOfServicesViewModel extends ViewModel {
 
-    public AlertDialog confirm(Context context) {
+    public AlertDialog confirm(Context context, Activity activity) {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
@@ -32,11 +33,13 @@ public class ListOfServicesViewModel extends ViewModel {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, close
                         // current activity
-                        File f = new File("/data/user/0/com.left4dev.leledometrostratou/files/ServicesData.xml");
+                        File f = new File(context.getString(R.string.services_path));
                         f.delete();
                         Intent intent = new Intent(context,MainActivity.class);
                         Toast.makeText(context,"Επιτυχής Διαγραφή",Toast.LENGTH_LONG).show();
                         context.startActivity(intent);
+                        activity.finish();
+
                     }
                 })
                 .setNegativeButton("Ακύρωση",new DialogInterface.OnClickListener() {

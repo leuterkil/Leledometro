@@ -1,15 +1,17 @@
 package com.left4dev.leledometrostratou.info;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.service.quicksettings.Tile;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.left4dev.leledometrostratou.MainActivity;
 import com.left4dev.leledometrostratou.R;
 import com.left4dev.leledometrostratou.functions.Datas;
 import com.left4dev.leledometrostratou.home.Home;
@@ -33,6 +43,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static android.content.ContentValues.TAG;
+
 public class Info extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private InfoViewModel mViewModel;
@@ -40,14 +52,15 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
     private EditText dateOfDismissal,dateOfEnlistment,Name,Esso,Series;
     private DatePickerDialog.OnDateSetListener dateOfDismissalCale,dateOfEnlistmentCale;
     private CorpsAdapter corpsAdapter;
-    private Datas datas = new Datas();
+    private final Datas datas = new Datas();
     private final Corps corps = new Corps();
     private Spinner corpsSpinner;
     private Button saveButton;
 
     private int ImageID;
     private String CorpTitle,Image;
-
+    private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
 
     public static Info newInstance() {
         return new Info();
@@ -65,6 +78,53 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
         Esso = fragmentView.findViewById(R.id.editTextESSO);
         Series = fragmentView.findViewById(R.id.editTextSeira);
         saveButton = fragmentView.findViewById(R.id.buttonSave);
+        mAdView = fragmentView.findViewById(R.id.adViewInfo);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        InterstitialAd.load(getContext(),"ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+                Log.i(TAG, "onAdLoaded");
+                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        // Called when fullscreen content is dismissed.
+                        Log.d("TAG", "The ad was dismissed.");
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(AdError adError) {
+                        // Called when fullscreen content failed to show.
+                        Log.d("TAG", "The ad failed to show.");
+                    }
+
+                    @Override
+                    public void onAdShowedFullScreenContent() {
+                        // Called when fullscreen content is shown.
+                        // Make sure to set your reference to null so you don't
+                        // show it a second time.
+                        mInterstitialAd = null;
+                        Log.d("TAG", "The ad was shown.");
+                    }
+                });
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Toast.makeText(getActivity(), "onAdLoadedNot()", Toast.LENGTH_SHORT).show();
+                Log.i(TAG, loadAdError.getMessage());
+                mInterstitialAd = null;
+            }
+        });
+
+
+
+
         corpsAdapter = new CorpsAdapter(getActivity(),corps.getTitles(),corps.getImages());
         corpsSpinner = fragmentView.findViewById(R.id.Corps);
         corpsSpinner.setAdapter(corpsAdapter);
@@ -104,7 +164,8 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(InfoViewModel.class);
-        File f = new File("/data/user/0/com.left4dev.leledometrostratou/files/personalData.xml");
+
+        File f = new File(getString(R.string.personal_info_path));
         ArrayList<String> userDatas;
         if (f.exists())
         {
@@ -141,6 +202,11 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
                 String doe = dateOfEnlistment.getText().toString();
                 String dod = dateOfDismissal.getText().toString();
                 datas.SaveChanges(getActivity(),name,doe,dod,esso,series,Image,CorpTitle,ImageID);
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(getActivity());
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Home()).commit();
                 break;
@@ -159,6 +225,19 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Home()).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     public void setImageID(int imageID) {

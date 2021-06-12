@@ -1,9 +1,11 @@
 package com.left4dev.leledometrostratou.services;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
+import com.left4dev.leledometrostratou.home.Home;
 import com.left4dev.leledometrostratou.tablists.ListOfServicesFragment;
 import com.left4dev.leledometrostratou.R;
 import com.left4dev.leledometrostratou.corps.CorpsFragment;
@@ -85,5 +88,18 @@ public class ServicesFragment extends Fragment {
         public int getCount() {
             return mNumOfTabs;
         }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Home()).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 }

@@ -10,7 +10,7 @@
         <!-- Secondary brand color. -->
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/ArmyGreen</item>
         <!-- Customize your theme here. -->
         <item name="colorAccent">@color/armyGreenSub</item>
     </style>

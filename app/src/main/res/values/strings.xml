@@ -25,9 +25,24 @@
     <string name="ypiretithinkan">Υπηρετήθηκαν :</string>
     <string name="date_of_service_placeholder">Ημ/νια Υπηρεσίας</string>
 
-<!--    Paths-->
+    <!--    Paths-->
     <string name="services_path">/data/user/0/com.left4dev.leledometrostratou/files/ServicesData.xml</string>
     <string name="vacations_path">/data/user/0/com.left4dev.leledometrostratou/files/VacationsData.xml</string>
     <string name="personal_info_path">/data/user/0/com.left4dev.leledometrostratou/files/personalData.xml</string>
-<!--    -->
+    <string name="penalties_path">/data/user/0/com.left4dev.leledometrostratou/files/PenaltiesData.xml</string>
+    <string name="outs_path">/data/user/0/com.left4dev.leledometrostratou/files/OutsData.xml</string>
+    <string name="notes_path">/data/user/0/com.left4dev.leledometrostratou/files/NotesData.xml</string>
+
+
+    <string name="ti_na_paro_mazi_mou_ston_strato_link">https://drive.google.com/file/d/1y4598KI6hAh2TQdjN1U8VzRfIBR7yjYk/view?usp=sharing</string>
+    <string name="dic_link">https://drive.google.com/file/d/1zDmIn9mHs1IOCbnowV7qPSnDIQENXYbs/view?usp=sharing</string>
+    <string name="xaire_link">https://drive.google.com/file/d/1sXc6Cy3DQaIT9HQwDcKzdiOlc0-HotwW/view?usp=sharing</string>
+    <string name="para_link">https://drive.google.com/file/d/1U9YpLBYFHU18wN9wfC0eFjN9GDB4j1mo/view?usp=sharing</string>
+    <string name="date_of_out_placeholder">Ημ/νια Εξόδου</string>
+    <string name="save_word">Αποθήκευση</string>
+    <string name="asm_placeholder">ΑΣΜ</string>
+    <string name="id_num_placeholder">Αρ.Ταυτότητας</string>
+    <string name="gun_num_placeholder">Αρ.Όπλου</string>
+    <string name="knife_num_placeholder">Αρ.Ξιφολογχης</string>
+    <!--    -->
 </resources>
