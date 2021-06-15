@@ -44,5 +44,7 @@
     <string name="id_num_placeholder">Αρ.Ταυτότητας</string>
     <string name="gun_num_placeholder">Αρ.Όπλου</string>
     <string name="knife_num_placeholder">Αρ.Ξιφολογχης</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
     <!--    -->
 </resources>

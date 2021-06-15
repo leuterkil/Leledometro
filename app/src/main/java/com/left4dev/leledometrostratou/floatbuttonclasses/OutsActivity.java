@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -29,7 +30,7 @@ public class OutsActivity extends AppCompatActivity implements View.OnClickListe
     private EditText dateOfOuts;
     private final Calendar calendar = Calendar.getInstance();
     private DatePickerDialog.OnDateSetListener datePicker;
-    private OutsActivityFunctions oaf;
+    private OutsActivityFunctions oaf = new OutsActivityFunctions();
     private Toolbar toolbar;
     private Button saveButton;
     private Datas datas = new Datas();
@@ -41,6 +42,11 @@ public class OutsActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outs);
         InitializeComponents();
+
+
+        saveButton.setOnClickListener(this);
+        dateOfOuts.setOnClickListener(this);
+
         datePicker = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -50,9 +56,6 @@ public class OutsActivity extends AppCompatActivity implements View.OnClickListe
                 dateOfOuts.setText(oaf.UpdateDateLabel(calendar));
             }
         };
-
-        saveButton.setOnClickListener(this);
-        dateOfOuts.setOnClickListener(this);
     }
 
     private void InitializeComponents()
@@ -88,14 +91,20 @@ public class OutsActivity extends AppCompatActivity implements View.OnClickListe
                 File f = new File(getString(R.string.outs_path));
                 if (f.exists())
                 {
-                    try {
-                        datas.SaveOuts(this,dateOfOuts.getText().toString());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (dateOfOuts.getText().toString().isEmpty())
+                    {
+                        Toast.makeText(this,"Πρέπει να συμπληρώσεις όλα τα δεδομένα",Toast.LENGTH_LONG).show();
                     }
-                    Intent intentMain = new Intent(OutsActivity.this, MainActivity.class);
-                    startActivity(intentMain);
-                    finishAffinity();
+                    else {
+                        try {
+                            datas.SaveOuts(this, dateOfOuts.getText().toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Intent intentMain = new Intent(OutsActivity.this, MainActivity.class);
+                        startActivity(intentMain);
+                        finishAffinity();
+                    }
                 }
                 else
                 {

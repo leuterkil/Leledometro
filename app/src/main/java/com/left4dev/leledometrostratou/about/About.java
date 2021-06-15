@@ -66,7 +66,7 @@ public class About extends Fragment implements View.OnClickListener {
         switch (view.getId())
         {
             case R.id.buttonFB:
-                intent = mViewModel.openLink("facebook.com");
+                intent = mViewModel.openLink("github.com/leuterkil/Leledometro");
                 startActivity(intent);
                 break;
             case R.id.buttonEmail:

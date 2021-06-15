@@ -10,12 +10,16 @@
     <color name="ArmyGreen">#4b5320</color>
     <color name="armyGreenSub">#325320</color>
     <color name="subtitle">#aaaaaa</color>
-<!-- menu items colors-->
+    <!-- menu items colors-->
     <color name="selecteditem">#204b53</color>
     <color name="textSelected">#357d8a</color>
     <color name="button_mail">#49b1b6</color>
     <color name="fb_blue">#4267B2</color>
     <!--    -->
-<!--    other-->
+    <!--    other-->
     <color name="loading_blue">#007599</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
 </resources>

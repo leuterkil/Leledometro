@@ -32,7 +32,10 @@ import com.left4dev.leledometrostratou.spinners.vacation.VacationsAdapter;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
 
@@ -50,6 +53,7 @@ public class VacationActivity extends AppCompatActivity implements AdapterView.O
     private Vacations vacations = new Vacations();
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
+    private Date c = Calendar.getInstance().getTime();
 
     private String type;
 
@@ -111,10 +115,13 @@ public class VacationActivity extends AppCompatActivity implements AdapterView.O
                 mInterstitialAd = null;
             }
         });
+        SimpleDateFormat sdf = new SimpleDateFormat("dd  MMM  yyyy", Locale.US);
         toolbar = findViewById(R.id.toolbarVacations);
         saveButton = findViewById(R.id.buttonSaveVacations);
         startDate = findViewById(R.id.editTextDateOfVacationStart);
         endDate = findViewById(R.id.editTextDateOfVacationEnd);
+        startDate.setText(sdf.format(c));
+        endDate.setText(sdf.format(c));
         adapter = new VacationsAdapter(this,vacations.getTypes());
         typeOfVacation.setAdapter(adapter);
 

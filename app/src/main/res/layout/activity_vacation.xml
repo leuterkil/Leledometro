@@ -96,6 +96,6 @@
             android:layout_gravity="bottom"
             android:layout_weight="0"
             app:adSize="SMART_BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+            app:adUnitId="ca-app-pub-7288256156140394/7036681794" />
     </LinearLayout>
 </LinearLayout>

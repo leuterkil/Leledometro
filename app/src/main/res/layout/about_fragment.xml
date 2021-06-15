@@ -88,7 +88,7 @@
                     android:layout_gravity="left"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="@string/facebook_word" />
+                    android:text="Github" />
 
                 <Button
                     android:id="@+id/buttonFB"
@@ -96,12 +96,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginLeft="20dp"
-                    android:backgroundTint="@color/fb_blue"
+                    android:backgroundTint="@color/black"
                     android:paddingLeft="13dp"
                     android:paddingRight="10dp"
-                    android:text="Like στην Σελίδα"
+                    android:text="Κώδικας Προγράμματος"
                     android:textSize="12sp"
-                    app:icon="@drawable/ic_baseline_thumb_up_alt_24"
+                    app:icon="@drawable/ic_baseline_code_24"
                     app:iconGravity="textEnd" />
 
             </TableRow>
@@ -181,7 +181,7 @@
             android:layout_gravity="bottom"
             android:layout_weight="0"
             app:adSize="SMART_BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+            app:adUnitId="ca-app-pub-7288256156140394/7036681794" />
     </LinearLayout>
 
 </FrameLayout>

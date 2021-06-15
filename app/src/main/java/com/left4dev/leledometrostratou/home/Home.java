@@ -34,6 +34,7 @@ import com.left4dev.leledometrostratou.functions.Datas;
 import com.left4dev.leledometrostratou.functions.PenaltyDatas;
 import com.left4dev.leledometrostratou.functions.ServiceDatas;
 import com.left4dev.leledometrostratou.functions.VacationDatas;
+import com.left4dev.leledometrostratou.info.Info;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -71,6 +72,7 @@ public class Home extends Fragment implements View.OnClickListener, View.OnLongC
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.home_fragment, container, false);
+        File f4 = new File(getString(R.string.personal_info_path));
         NavigationView navigationView = getActivity().findViewById(R.id.navigation_view);
         View header = navigationView.getHeaderView(0);
         toolbar = getActivity().findViewById(R.id.toolbar);
@@ -83,7 +85,6 @@ public class Home extends Fragment implements View.OnClickListener, View.OnLongC
         File f = new File(getString(R.string.services_path));
         File f2 = new File(getString(R.string.penalties_path));
         File f3 = new File(getString(R.string.vacations_path));
-
 
         try
         {

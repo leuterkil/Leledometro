@@ -19,10 +19,9 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 import com.left4dev.leledometrostratou.home.Home;
+import com.left4dev.leledometrostratou.tablists.CalendarFragment;
 import com.left4dev.leledometrostratou.tablists.ListOfServicesFragment;
 import com.left4dev.leledometrostratou.R;
-import com.left4dev.leledometrostratou.corps.CorpsFragment;
-import com.left4dev.leledometrostratou.notebook.Notebook;
 import com.left4dev.leledometrostratou.tablists.ListOfVacationFragment;
 
 public class ServicesFragment extends Fragment {
@@ -77,7 +76,7 @@ public class ServicesFragment extends Fragment {
                 case 1:
                     return new ListOfVacationFragment();
                 case 2:
-                    return new CorpsFragment();
+                    return new CalendarFragment();
 
                 default:
                     return null;

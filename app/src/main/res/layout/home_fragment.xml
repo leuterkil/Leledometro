@@ -144,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Λευτέρης Χαρισσόπουλος"
+            android:text="Ανδρέας Παπαδόπουλος"
             android:textColor="@color/armyGreenSub"
             android:textSize="24sp" />
 

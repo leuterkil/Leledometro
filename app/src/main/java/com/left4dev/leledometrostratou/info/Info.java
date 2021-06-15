@@ -82,7 +82,7 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        InterstitialAd.load(getContext(),"ca-app-pub-3940256099942544/1033173712", adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(getContext(),"ca-app-pub-7288256156140394/3350386521", adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 // The mInterstitialAd reference will be null until
@@ -201,14 +201,20 @@ public class Info extends Fragment implements View.OnClickListener, AdapterView.
                 String series = Series.getText().toString();
                 String doe = dateOfEnlistment.getText().toString();
                 String dod = dateOfDismissal.getText().toString();
-                datas.SaveChanges(getActivity(),name,doe,dod,esso,series,Image,CorpTitle,ImageID);
-                if (mInterstitialAd != null) {
-                    mInterstitialAd.show(getActivity());
-                } else {
-                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                if (name.isEmpty()||esso.isEmpty()||series.isEmpty()||doe.isEmpty()||dod.isEmpty())
+                {
+                    Toast.makeText(getContext(),"Πρέπει να συμπληρώσεις όλα τα δεδομένα",Toast.LENGTH_LONG).show();
                 }
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Home()).commit();
+                else {
+                    datas.SaveChanges(getActivity(), name, doe, dod, esso, series, Image, CorpTitle, ImageID);
+                    if (mInterstitialAd != null) {
+                        mInterstitialAd.show(getActivity());
+                    } else {
+                        Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                    }
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new Home()).commit();
+                }
                 break;
         }
     }

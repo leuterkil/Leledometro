@@ -896,8 +896,11 @@ public class Datas {
             }
             else if (eventType == XmlPullParser.START_TAG)
             {
-                    eventTemp=xpp.next();
-                     outsDates.add(xpp.getText());
+
+            }
+            else if (eventType == XmlPullParser.TEXT)
+            {
+                outsDates.add(xpp.getText());
             }
             try
             {

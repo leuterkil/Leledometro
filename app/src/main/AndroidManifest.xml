@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_application"
         android:supportsRtl="true"
         android:theme="@style/Theme.LeledometroStratou.NoActionBar">
-        <activity android:name=".DocumentsActivity"></activity>
+        <activity android:name=".DocumentsActivity" />
+
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
@@ -37,14 +38,23 @@
         <activity
             android:name=".MainActivity"
             android:hardwareAccelerated="true"
-            android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7288256156140394~8781595035" />
+        <receiver android:name=".Counter1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/counter1_info" />
+        </receiver>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
